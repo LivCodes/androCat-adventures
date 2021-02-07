@@ -7,7 +7,13 @@
     text-align: center;
     width: 100%;
 }
+@font-face {
+    font-family: "Vermin Vibes V";
+    src: url("VerminVibesV-Zlg3.ttf") format("truetype");
+}
 h1 {
     color: white;
     font-family: "Vermin Vibes V";
+    font-size: 50px;
 }
+
