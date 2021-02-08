@@ -23,7 +23,10 @@
 #container{
     width: 100%;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> f31b17cbd9dfb06e10e62e2e8be8c2cba6cb96c6
 @font-face {
     font-family: "Vermin Vibes V";
     src: url("VerminVibesV-Zlg3.ttf") format("truetype");
@@ -32,6 +35,11 @@ h1 {
     color: rgb(54, 48, 48);
     font-family: "Vermin Vibes V";
     font-size: 50px;
+<<<<<<< HEAD
     text-shadow: 3px 4px rgb(248, 224, 5);
     margin-bottom: 0;
 }
+=======
+}
+
+>>>>>>> f31b17cbd9dfb06e10e62e2e8be8c2cba6cb96c6
