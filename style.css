@@ -1,13 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
 #gameScreen {
     background-color: grey;
     border: 2px solid red;
+    position: absolute;
+    height: 700px;
+    width: 1000px;
+    /* width: 60%;
+    height: 60%; */
+}
+
+#floor {
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    /* background: url(''); */
+    background-color: grey;
 }
 
 #container{
-    text-align: center;
     width: 100%;
 }
-h1 {
-    color: white;
+
+@font-face {
     font-family: "Vermin Vibes V";
+    src: url("VerminVibesV-Zlg3.ttf") format("truetype");
+}
+h1 {
+    color: rgb(54, 48, 48);
+    font-family: "Vermin Vibes V";
+    font-size: 50px;
+    text-shadow: 3px 4px rgb(248, 224, 5);
+    margin-bottom: 0;
 }
