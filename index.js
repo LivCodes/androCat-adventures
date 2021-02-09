@@ -15,7 +15,7 @@
             
           }, false);
         
-        img1.src = "pngFolder/idle-1.png"
+        img1.src = "png-files/Idle1.png"
         
         
 
