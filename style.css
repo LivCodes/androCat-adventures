@@ -3,13 +3,16 @@
 }
 
 #gameScreen {
+    position: absolute;
+    top: 50;
+    bottom: 50;
+    left: 0;
+    right: 0;
+    margin:auto;
     background-color: grey;
     border: 2px solid red;
-    position: absolute;
-    height: 700px;
-    width: 1000px;
-    /* width: 60%;
-    height: 60%; */
+    height: 80%;
+    width: 60%; 
 }
 
 #floor {
@@ -23,10 +26,6 @@
 #container{
     width: 100%;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> f31b17cbd9dfb06e10e62e2e8be8c2cba6cb96c6
 @font-face {
     font-family: "Vermin Vibes V";
     src: url("VerminVibesV-Zlg3.ttf") format("truetype");
@@ -35,11 +34,6 @@ h1 {
     color: rgb(54, 48, 48);
     font-family: "Vermin Vibes V";
     font-size: 50px;
-<<<<<<< HEAD
-    text-shadow: 3px 4px rgb(248, 224, 5);
-    margin-bottom: 0;
-}
-=======
+    text-align: center;
 }
 
->>>>>>> f31b17cbd9dfb06e10e62e2e8be8c2cba6cb96c6
