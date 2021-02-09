@@ -6,10 +6,6 @@
     background-color: grey;
     border: 2px solid red;
     position: absolute;
-    height: 700px;
-    width: 1000px;
-    /* width: 60%;
-    height: 60%; */
 }
 
 #floor {
@@ -31,5 +27,7 @@ h1 {
     color: rgb(54, 48, 48);
     font-family: "Vermin Vibes V";
     font-size: 50px;
+    text-shadow: 3px 4px rgb(248, 224, 5);
+    margin-bottom: 0;
 }
 
