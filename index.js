@@ -49,7 +49,7 @@ function playGame() {
   floor.addEventListener("load", () => {
     ctx.drawImage(floor,-70,400,1200,300);
   })
-  floor.src = "https://img.pngio.com/maplestory-grass-tile-by-per-ankh-on-deviantart-grass-sprite-png-800_147.png"
+  floor.src = "pngFolder/grass.png"
 
   document.addEventListener("keydown", (e) => {
     isMoving = true;
