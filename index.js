@@ -75,6 +75,11 @@ function play() {
       }
       if(key== 38 || key == 87){  // up
           y -= 20;
+          x += 40;
+          console.log(y)
+          if(y <= 250){
+            y = 330
+          }
       }
       if(key== 39 || key == 68){ // right
           x += 2;
