@@ -1,51 +1,131 @@
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
-
-#gameScreen {
-    position: absolute;
-    top: 50;
-    bottom: 50;
-    left: 0;
-    right: 0;
-    margin: auto;
-    background: linear-gradient(to bottom,darkblue, lightblue, yellow,darkorange, green)
-    /* background-color: grey; */
-    /* border: 2px solid red; */
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-/* 
-img {
+#button {
+    margin: 0;
     position: absolute;
-    top: 50;
-    bottom: 50;
-    left: 0;
-    right: 0;
-    margin: auto;
-} */
-
-#floor {
+    top: 65%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+/**/
+ .play {
+    min-width: 200px;
+    min-height: 60px;
+    font-family: "Vermin Vibes V";
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1.3px;
+    font-weight: 700;
+    color: #313133;
+    background: #4FD1C5;
+    background: linear-gradient(90deg, rgb(236, 170, 71) 0%, rgb(207, 142, 45) 100%);
+    border: none;
+    border-radius: 1000px;
+    box-shadow: 12px 12px 24px rgba(238, 209, 42, 0.64);
+    transition: all 0.3s ease-in-out 0s;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    padding: 10px;
+    } 
+  button::before {
+  content: '';
+    border-radius: 1000px;
+    min-width: calc(300px + 12px);
+    min-height: calc(60px + 12px);
+    /* border: 6px solid #ad5f06; */
+    box-shadow: 0 0 60px rgba(250, 236, 37, 0.918);
     position: absolute;
-    width: 60%;
-    height: 60%;
-    /* background: url(''); */
-    background-color: grey;
-}
-
-#container {
-    width: 100%;
-}
-
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: all .3s ease-in-out 0s;
+  }
+  
+  .play:hover, .play:focus {
+    color: #313133;
+    transform: translateY(-6px);
+  }
+  
+  button:hover::before, button:focus::before {
+    opacity: 1;
+  }
+  
+  button::after {
+    content: '';
+    width: 30px; height: 30px;
+    border-radius: 100%;
+    border: 6px solid #080701;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: ring 1.5s infinite;
+  }
+  
+  button:hover::after, button:focus::after {
+    animation: none;
+    display: none;
+  }
+  
+  @keyframes ring {
+    0% {
+      width: 30px;
+      height: 30px;
+      opacity: 1;
+    }
+    100% {
+      width: 300px;
+      height: 300px;
+      opacity: 0;
+    }
+  } 
+/* /////// */
 @font-face {
     font-family: "Vermin Vibes V";
     src: url("VerminVibesV-Zlg3.ttf") format("truetype");
 }
-
 h1 {
     color: rgb(54, 48, 48);
     font-family: "Vermin Vibes V";
     font-size: 50px;
     text-shadow: 3px 4px rgb(248, 224, 5);
     text-align: center;
-    margin-bottom: 0;
+    padding-top: 20px;
+}
+#buttonLayer {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    padding-left: 400px;
+}
+#gameScreen {
+    /* width: 1000px;
+    height: 550px; */
+    border: 2px solid blue;
+    background: linear-gradient(to bottom, lightblue, yellow, orange, green);
 }
 
+h2 {
+    color: rgb(54, 48, 48);
+    font-family: "Vermin Vibes V";
+    font-size: 50px;
+    text-shadow: 3px 4px rgb(248, 224, 5);
+    margin-bottom: 0;
+    text-align: center;
+}
