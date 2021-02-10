@@ -1,10 +1,10 @@
 // document.addEventListener("DOMContentLoaded", function () {
- 
- 
-
 // })
+let x = document.getElementById("beat")
+  x.play();
+///////////////
 
-function play() {
+function playGame() {
   document.body.innerHTML = '';
 
   var canvas = document.createElement("canvas")

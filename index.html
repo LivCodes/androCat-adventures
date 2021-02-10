@@ -11,18 +11,22 @@
     <script src="enemy.js"></script>
 </head>
 <body>
+    <!--sound doesn't work for chrome-->
+    <audio id="beat" autoplay>
+        <source src="./beatz.mp3" type="audio/mp3">
+    </audio>
      <!-- <div id="container">
         <div id= "header">
             <h1>AndroCat Adventures</h1>
         </div>
-        <!-- <img src= "" id="backgroundImg" height = "550" width= "1000"/> -->
+        <img src= "" id="backgroundImg" height = "550" width= "1000"/> -->
         <!-- <canvas id= "gameScreen" height = "550" width= "1000">Game Goes Here</canvas>
     </div> --> 
     <div id="homeScreen">
         <h1>Androcat Adventures</h1>
     </div>
     <div id="button">
-    <button class="play" onclick=play()>START GAME</button>
+    <button class="play" onclick=playGame()>START GAME</button>
     </div>
 </body>
 </html>

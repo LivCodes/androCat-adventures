@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     width: 100vw;
     height: 100vh;
@@ -118,7 +119,7 @@ h1 {
     /* width: 1000px;
     height: 550px; */
     border: 2px solid blue;
-    background: linear-gradient(to bottom, lightblue, yellow, orange, green);
+    background: linear-gradient(to bottom,blue, lightblue, rgb(238, 183, 81));
 }
 
 h2 {
