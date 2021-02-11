@@ -1,7 +1,7 @@
 // document.addEventListener("DOMContentLoaded", function () {
 // })
-let x = document.getElementById("beat")
-  x.play();
+//   let x = document.getElementById("beat")
+//   x.addEventListener("load", play())
 ///////////////
 
 function playGame() {
@@ -27,6 +27,8 @@ function playGame() {
   canvas.height = 550
   let x = 0;
   let y = 300;
+  let zX = 0;
+  let yZ = 300;
   let key;
   let isMoving = false;
   document.body.style.backgroundColor = "#dee6ed"
@@ -45,6 +47,12 @@ function playGame() {
   })
   clouds.src = "png-files-right/header_clouds.png"
 
+  let zombie1 = new Image();
+  zombie1.addEventListener("load", () => {
+    ctx.drawImage(zombie1,700,300,150,150);
+  })
+  zombie1.src = "png-files/female-zombie/Walk (1).png"
+
   let floor = new Image();
   floor.addEventListener("load", () => {
     ctx.drawImage(floor,-70,400,1200,300);
@@ -61,7 +69,7 @@ function playGame() {
       key=window.event?e.keyCode:e.which;
   })
   setInterval(move,20);
-
+  setInterval(zombieMove,50);
   function draw() {
       return ctx.drawImage(player,x,y,150,150);
   }
@@ -92,5 +100,18 @@ function playGame() {
       ctx.drawImage(clouds,0,0,1000,150);
       ctx.drawImage(floor,-70,400,1200,300);
   }
+  function zombieMove () {
+    if(isMoving == false){
+      return;
+  }
+  zX -= 2
+  ctx.drawImage(zombie1,zX,zY,150,150);
+  // let random = 700;
+  // while(random > 0){
+  //   ctx.drawImage(zombie1,random,300,150,150);
+    
+  //   random -= 10;
+  // }
+}
 }
 // })
