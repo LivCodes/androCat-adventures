@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Sedgwick Ave Display
+- Font Author: Copyright 2017 The Sedgwick Ave Project Authors (https://github.com/googlefonts/sedgwickave)
+- Font Source: http://fonts.gstatic.com/s/sedgwickavedisplay/v6/xfuu0XPgU3jZPUoUo3ScvmPi-NapQ8OxM2czd-YnOzUD.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL)

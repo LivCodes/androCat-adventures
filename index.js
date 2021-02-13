@@ -1,117 +1,92 @@
-// document.addEventListener("DOMContentLoaded", function () {
-// })
-//   let x = document.getElementById("beat")
-//   x.addEventListener("load", play())
-///////////////
+import TitleScene from './titleScene.js';
+import config from './gameConfig.js';
 
-function playGame() {
-  document.body.innerHTML = '';
-
-  var canvas = document.createElement("canvas")
-  var container = document.createElement("div")
-  var header = document.createElement('div')
-  var title = document.createElement('h2')
-  var background = document.createElement('img')
-  canvas.id = "gameScreen"
-  container.id = "container"
-  header.id = "header"
-  title.innerText = "AndroCat Adventures"
-  // background.id = "backgroundImg"
-  // background.src = ""
-  document.body.appendChild(container)
-  container.append(header, background, canvas)
-  header.appendChild(title)
-  var ctx = canvas.getContext("2d");
-  canvas.style.border = "5px solid black"
-  canvas.width = 1000
-  canvas.height = 550
-  let x = 0;
-  let y = 300;
-  let zX = 0;
-  let yZ = 300;
-  let key;
-  let isMoving = false;
-  document.body.style.backgroundColor = "#dee6ed"
-
-  let player = new Image();
-
-  player.addEventListener("load", draw)
-
-  player.src = "png-files-right/Idle1.png";
-  let player1 = new Image();
-  player1.src = "png-files-right/dead1.png";
-
-  let clouds = new Image();
-  clouds.addEventListener("load", () => {
-    ctx.drawImage(clouds,0,0,1000,150);
-  })
-  clouds.src = "png-files-right/header_clouds.png"
-
-  let zombie1 = new Image();
-  zombie1.addEventListener("load", () => {
-    ctx.drawImage(zombie1,700,300,150,150);
-  })
-  zombie1.src = "png-files/female-zombie/Walk (1).png"
-
-  let floor = new Image();
-  floor.addEventListener("load", () => {
-    ctx.drawImage(floor,-70,400,1200,300);
-  })
-  floor.src = "pngFolder/grass.png"
-
-  document.addEventListener("keydown", (e) => {
-    isMoving = true;
-    key = e.keyCode;
-  })
-
-  document.addEventListener("keyup", (e) => {
-      isMoving = false;
-      key=window.event?e.keyCode:e.which;
-  })
-  setInterval(move,20);
-  setInterval(zombieMove,50);
-  function draw() {
-      return ctx.drawImage(player,x,y,150,150);
+class LevelOne extends Phaser.Scene {
+  constructor() {
+      super(LevelOne);
+      
   }
-  idle = [player1, player, player1, player]
-  function move() {
-      if(isMoving == false){
-          return;
-      }
-      if(key == 37 || key == 65 && x > canvas.width){   // left
-          x -= 2;
-      }
-      if(key== 38 || key == 87){  // up
-          y -= 20;
-          x += 40;
-          console.log(y)
-          if(y <= 250){
-            y = 330
-          }
-      }
-      if(key== 39 || key == 68){ // right
-          x += 2;
-      }
-      if(key == 40 || key == 83){ // down
-          y += 2;
-      }
-      canvas.width=canvas.width;
-      ctx.drawImage(player,x,y,150,150);
-      ctx.drawImage(clouds,0,0,1000,150);
-      ctx.drawImage(floor,-70,400,1200,300);
+
+  preload () {
+      this.load.image('background', 'assets/images/backG.jpg');
+      this.load.image('AndroCat', 'assets/images/png/Idle (1).png')
+      this.load.image('zombie1', 'assets/images/png-files/female-zombie/Attack (1).png')
+      this.load.image('zombie2', 'assets/images/png-files/male-zombie/Attack (1).png')
+      this.load.image('clouds', 'assets/images/clouds.png')
+      this.load.image('floor', 'assets/images/grass.png')
+      this.load.audio('LevelOneMusic', 'assets/audio/Patricia Taxxon - Nostalgia - 09 Home.mp3')
   }
-  function zombieMove () {
-    if(isMoving == false){
-      return;
-  }
-  zX -= 2
-  ctx.drawImage(zombie1,zX,zY,150,150);
-  // let random = 700;
-  // while(random > 0){
-  //   ctx.drawImage(zombie1,random,300,150,150);
+
+  create () {
+      this.LevelOneMusic = this.sound.add('LevelOneMusic')
+      this.LevelOneMusic.play();
+      this.backG = this.add.sprite(0, 0, 'background');    // adds background
+      this.player = this.add.sprite(50, 405, 'AndroCat');  // adds player & stores in variable
+      this.zombie1 = this.add.sprite(800, 395, 'zombie1'); // adds enemy
+      this.zombie2 = this.add.sprite(900, 405, 'zombie2'); // adds enemy
+      // let zombie1 = this.add.sprite(800, 395, 'zombie1'); 
+      let clouds = this.add.sprite(500,95, 'clouds');     
+      let floor = this.add.sprite(400, 530, 'floor')
+      console.log(this.input.keyboard)
+      // decreases the size of the sprites
+      this.player.setScale(0.3) 
+      this.zombie1.setScale(0.3)
+      this.zombie2.setScale(0.3)
+      floor.setScale(2,1)
+      clouds.setScale(.8,1.3)
+  
+      this.zombie1.flipX = true; // flips the zombie from right to left
+      this.zombie2.flipX = true;
+      // player.setPosition(1000/2, 550/2)      // places player in the center of canvas
+  
+      // access canvas width & height from config object
+      let gameWidth = this.sys.game.config.width;
+      let gameHeight = this.sys.game.config.height;
+      console.log(gameHeight, gameWidth) 
+  
+      console.log(this.backG) // sprite properties displayed
+      console.log(this) // properties available to the game scene 
+    // keyboard events
+    this.arrowUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+    this.arrowDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+    this.arrowLeft = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+    this.arrowRight = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+    this.a = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+    this.s = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+    this.d = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+    this.w = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
     
-  //   random -= 10;
-  // }
-}
-}
-// })
+    
+  }
+
+  update () { // updates 60 times per second
+      this.zombie1.x -= 2;
+      this.zombie2.x -= 1;
+
+      if (this.arrowUp.isDown || this.w.isDown) {
+     
+          // this.player.y -= 2   
+        } else if (this.arrowDown.isDown || this.s.isDown) {
+
+          // this.player.y += 2
+        } else if (this.arrowLeft.isDown || this.a.isDown) {
+
+          this.player.x -= 2
+        } else if (this.arrowRight.isDown || this.d.isDown) {
+
+          this.player.x += 2
+         
+        }
+        
+  }
+} 
+
+
+let game = new Phaser.Game(config);  // starts the game utializing the config object
+game.scene.add('TitleScene', TitleScene);
+game.scene.add("LevelOne", LevelOne);
+
+
+// Start the title scene
+game.scene.start('TitleScene');
+// game.scene.start('LevelOne');

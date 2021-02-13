@@ -1,4 +1,4 @@
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -18,9 +18,9 @@ body {
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-}
+} */
 /**/
- .play {
+ /* .play {
     min-width: 200px;
     min-height: 60px;
     font-family: "Vermin Vibes V";
@@ -39,13 +39,12 @@ body {
     outline: none;
     position: relative;
     padding: 10px;
-    } 
-  button::before {
+    }  */
+  /* button::before {
   content: '';
     border-radius: 1000px;
     min-width: calc(300px + 12px);
     min-height: calc(60px + 12px);
-    /* border: 6px solid #ad5f06; */
     box-shadow: 0 0 60px rgba(250, 236, 37, 0.918);
     position: absolute;
     top: 50%;
@@ -53,9 +52,9 @@ body {
     transform: translate(-50%, -50%);
     opacity: 0;
     transition: all .3s ease-in-out 0s;
-  }
+  } */
   
-  .play:hover, .play:focus {
+  /* .play:hover, .play:focus {
     color: #313133;
     transform: translateY(-6px);
   }
@@ -80,9 +79,9 @@ body {
   button:hover::after, button:focus::after {
     animation: none;
     display: none;
-  }
+  } */
   
-  @keyframes ring {
+  /* @keyframes ring {
     0% {
       width: 30px;
       height: 30px;
@@ -93,36 +92,45 @@ body {
       height: 300px;
       opacity: 0;
     }
-  } 
+  }  */
 /* /////// */
-@font-face {
-    font-family: "Vermin Vibes V";
-    src: url("VerminVibesV-Zlg3.ttf") format("truetype");
-}
-h1 {
-    color: rgb(54, 48, 48);
-    font-family: "Vermin Vibes V";
-    font-size: 50px;
-    text-shadow: 3px 4px rgb(248, 224, 5);
-    text-align: center;
-    padding-top: 20px;
-}
-#buttonLayer {
+
+/* #buttonLayer {
     margin: 0;
     position: absolute;
     top: 50%;
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     padding-left: 400px;
-}
-#gameScreen {
-    /* width: 1000px;
-    height: 550px; */
+} */
+/* #gameScreen {
     border: 2px solid blue;
     background: linear-gradient(to bottom,blue, lightblue, rgb(238, 183, 81));
+} */
+
+canvas {
+  width: 90% ;   /* when browser width is reduced so is the canvas */
+  position:absolute; 
+  top: 90px; 
+  left: 0px; 
+  right: 0px; 
+  bottom: 0px; 
+  margin: auto;
 }
 
-h2 {
+@font-face {  /* allows downloaded font to be used */
+  font-family: "Vermin Vibes V";
+  src: url("assets/fonts/VerminVibesV-Zlg3.ttf") format("truetype");
+}
+/* h1 {
+  color: rgb(54, 48, 48);
+  font-family: "Vermin Vibes V";
+  font-size: 50px;
+  text-shadow: 3px 4px rgb(248, 224, 5);
+  text-align: center;
+  padding-top: 20px;
+} */
+h1 {
     color: rgb(54, 48, 48);
     font-family: "Vermin Vibes V";
     font-size: 50px;
