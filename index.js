@@ -7,7 +7,7 @@ class LevelOne extends Phaser.Scene {
       
   }
 
-  preload () {
+  preload () {   //loads assets before scene starts
       this.load.image('background', 'assets/images/backG.jpg');
       this.load.image('AndroCat', 'assets/images/png/Idle (1).png')
       this.load.image('zombie1', 'assets/images/png-files/female-zombie/Attack (1).png')
@@ -17,13 +17,13 @@ class LevelOne extends Phaser.Scene {
       this.load.audio('LevelOneMusic', 'assets/audio/Patricia Taxxon - Nostalgia - 09 Home.mp3')
   }
 
-  create () {
+  create () {   // add assets to the scene
       this.LevelOneMusic = this.sound.add('LevelOneMusic')
       this.LevelOneMusic.play();
       this.backG = this.add.sprite(0, 0, 'background');    // adds background
-      this.player = this.add.sprite(50, 405, 'AndroCat');  // adds player & stores in variable
-      this.zombie1 = this.add.sprite(800, 395, 'zombie1'); // adds enemy
-      this.zombie2 = this.add.sprite(900, 405, 'zombie2'); // adds enemy
+      this.player = this.physics.add.sprite(50, 405, 'AndroCat');  // adds player & stores in variable
+      this.zombie1 = this.physics.add.sprite(800, 395, 'zombie1'); // adds enemy
+      this.zombie2 = this.physics.add.sprite(900, 405, 'zombie2'); // adds enemy
       // let zombie1 = this.add.sprite(800, 395, 'zombie1'); 
       let clouds = this.add.sprite(500,95, 'clouds');     
       let floor = this.add.sprite(400, 530, 'floor')
@@ -55,8 +55,19 @@ class LevelOne extends Phaser.Scene {
     this.s = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     this.d = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.w = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-    
-    
+
+    // Handling collision
+  this.player.setCircle(10, 300, 100)   // sets the point of collision -> uses circle instead of default square
+                  // 1st argument sets the size of the circle
+                  // 2nd argument X-axis sets how far from origin(0,0) of player (origin is at top left corner)
+                  // 3rd argument Y-axis
+
+    this.physics.add.collider(this.zombie1, this.player, function(zombie, player){
+        zombie.destroy();     // upon collision zombie disappears
+    })
+    this.physics.add.collider(this.zombie2, this.player, function(zombie, player){
+      zombie.destroy(); // upon collision zombie disappears
+  })
   }
 
   update () { // updates 60 times per second

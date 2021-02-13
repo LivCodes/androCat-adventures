@@ -111,7 +111,8 @@ body {
 canvas {
   width: 90% ;   /* when browser width is reduced so is the canvas */
   position:absolute; 
-  top: 90px; 
+  /* top: 90px;  */
+  top: 0px;
   left: 0px; 
   right: 0px; 
   bottom: 0px; 
