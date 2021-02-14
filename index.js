@@ -67,12 +67,29 @@ class LevelOne extends Phaser.Scene {
     })
     this.physics.add.collider(this.zombie2, this.player, function(zombie, player){
       zombie.destroy(); // upon collision zombie disappears
-  })
+    })
+
+    // setting player boundary with edge of canvas
+    this.physics.world.setBounds(60, 0, gameWidth - 100, gameHeight, true, true, true, true);
+
+    this.player.body.setCollideWorldBounds(true);
+    this.player.body.onWorldBounds = true;
+    this.physics.world.on('worldbounds', function(){
+        if(this.player.x > 700 && !(this.player.flipX)) {
+          this.player.flipX = true;
+          this.player.x = 930;
+        } else if (this.player.x < 100 && this.player.flipX) {
+          this.player.flipX = false;
+          this.player.x = 50;
+        }
+
+    },this);
+
   }
 
   update () { // updates 60 times per second
-      this.zombie1.x -= 2;
-      this.zombie2.x -= 1;
+      this.zombie1.x -= 4;
+      this.zombie2.x -= 3;
 
       if (this.arrowUp.isDown || this.w.isDown) {
      
@@ -82,10 +99,10 @@ class LevelOne extends Phaser.Scene {
           // this.player.y += 2
         } else if (this.arrowLeft.isDown || this.a.isDown) {
 
-          this.player.x -= 2
+          this.player.x -= 7
         } else if (this.arrowRight.isDown || this.d.isDown) {
 
-          this.player.x += 2
+          this.player.x += 7
          
         }
         
