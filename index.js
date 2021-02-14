@@ -77,7 +77,7 @@ class LevelOne extends Phaser.Scene {
     this.physics.world.on('worldbounds', function(){
         if(this.player.x > 700 && !(this.player.flipX)) {
           this.player.flipX = true;
-          this.player.x = 930;
+          this.player.x = 950;
         } else if (this.player.x < 100 && this.player.flipX) {
           this.player.flipX = false;
           this.player.x = 50;
@@ -98,10 +98,14 @@ class LevelOne extends Phaser.Scene {
 
           // this.player.y += 2
         } else if (this.arrowLeft.isDown || this.a.isDown) {
-
+          if (!(this.player.flipX)) {
+            this.player.flipX = true;
+          }
           this.player.x -= 7
         } else if (this.arrowRight.isDown || this.d.isDown) {
-
+          if (this.player.flipX) {
+            this.player.flipX = false;
+          }
           this.player.x += 7
          
         }
