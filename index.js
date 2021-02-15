@@ -7,7 +7,7 @@ class LevelOne extends Phaser.Scene {
       
   }
 
-  preload () {
+  preload () {   //loads assets before scene starts
       this.load.image('background', 'assets/images/backG.jpg');
       this.load.spritesheet('robot', 'assets/images/png/idle.png', { frameWidth: 275, frameHeight: 473 }) 
       this.load.spritesheet('robotrun', 'assets/images/png/run.png', { frameHeight: 489,  frameWidth: 310})
@@ -29,17 +29,18 @@ class LevelOne extends Phaser.Scene {
       this.LevelOneMusic.play();
       this.backG = this.add.sprite(0, 0, 'background');    // adds background
 
+      let floor = this.physics.add.staticImage(gameWidth/2, gameHeight * .95, 'floor').setScale(2).refreshBody();
+
       this.player = this.physics.add.sprite(gameWidth/2, 0);  // adds player & stores in variable
       this.player.setGravityY(200)
+
+      this.physics.add.collider(this.player, floor)
+      floor.setImmovable()
 
       this.zombie1 = this.add.sprite(800, 395, 'zombie1'); // adds enemy
       this.zombie2 = this.add.sprite(900, 405, 'zombie2'); // adds enemy
       // let zombie1 = this.add.sprite(800, 395, 'zombie1'); 
       let clouds = this.add.sprite(500,95, 'clouds');  
-
-      let floor = this.physics.add.sprite(gameWidth/2, gameHeight * .95, 'floor');
-      this.physics.add.collider(this.player, floor)
-      floor.setImmovable()
 
       console.log(this.input.keyboard)
       // decreases the size of the sprites
@@ -87,14 +88,42 @@ class LevelOne extends Phaser.Scene {
     this.s = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
     this.d = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
     this.w = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-    
-    
+
+    // Handling collision
+  this.player.setCircle(10, 300, 100)   // sets the point of collision -> uses circle instead of default square
+                  // 1st argument sets the size of the circle
+                  // 2nd argument X-axis sets how far from origin(0,0) of player (origin is at top left corner)
+                  // 3rd argument Y-axis
+
+    this.physics.add.collider(this.zombie1, this.player, function(zombie, player){
+        zombie.destroy();     // upon collision zombie disappears
+    })
+    this.physics.add.collider(this.zombie2, this.player, function(zombie, player){
+      zombie.destroy(); // upon collision zombie disappears
+    })
+
+    // setting player boundary with edge of canvas
+    this.physics.world.setBounds(60, 0, gameWidth - 100, gameHeight, true, true, true, true);
+
+    this.player.body.setCollideWorldBounds(true);
+    this.player.body.onWorldBounds = true;
+    this.physics.world.on('worldbounds', function(){
+        if(this.player.x > 700 && !(this.player.flipX)) {
+          this.player.flipX = true;
+          this.player.x = 950;
+        } else if (this.player.x < 100 && this.player.flipX) {
+          this.player.flipX = false;
+          this.player.x = 50;
+        }
+
+    },this);
+
   }
 
 
   update () { // updates 60 times per second
-      this.zombie1.x -= 2;
-      this.zombie2.x -= 1;
+      this.zombie1.x -= 4;
+      this.zombie2.x -= 3;
 
       let score = 0;
       this.add.text(16, 16, 'score: 0', {fontSize: '32px', fill: 'black'})
@@ -110,15 +139,15 @@ class LevelOne extends Phaser.Scene {
 
           // this.player.y += 2
         } else if (this.arrowLeft.isDown || this.a.isDown) {
-
-          this.player.x -= 2
+          if (!(this.player.flipX)) {
+            this.player.flipX = true;
+          }
+          this.player.x -= 7
         } else if (this.arrowRight.isDown || this.d.isDown) {
-
-          this.player.x += 2
-          this.player.play('run', true)
-        }
-        else {
-          this.player.play('idle', true)
+          if (this.player.flipX) {
+            this.player.flipX = false;
+          }
+          this.player.x += 7
         }
   }
 } 
