@@ -109,12 +109,13 @@ body {
 } */
 
 canvas {
-  width: 90% ;   /* when browser width is reduced so is the canvas */
+  width: 1000px;   /* when browser width is reduced so is the canvas */
+  height: 600px;
   position:absolute; 
   top: 90px; 
   left: 0px; 
   right: 0px; 
-  bottom: 0px; 
+  bottom: 90px; 
   margin: auto;
 }
 

@@ -7,8 +7,8 @@ const config = {   // sets up the game configuration
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: { y: 500 }, // will affect our player sprite
-            debug: false 
+            // gravity: { y: 500 }, // will affect our player sprite
+            debug: true 
         }
     },
     titleMusic: {
