@@ -17,7 +17,7 @@ class TitleScene extends Phaser.Scene {
         this.bg = this.add.sprite(50,200,'background');
         this.bg.setOrigin(0,0);
 
-        this.text = this.add.text(400,400, 'START GAME');
+        this.text = this.add.text(400,400, 'START GAME', {fontSize: '25px'});
         this.text.setInteractive({ useHandCursor: true });
         this.text.on('pointerdown', () => this.clickButton());
        
