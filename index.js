@@ -9,7 +9,7 @@ class LevelOne extends Phaser.Scene {
   }
 
   preload () {   //loads assets before scene starts
-      this.load.image('background', 'assets/images/backG.jpg');
+      // this.load.image('background', 'assets/images/starry.png');
       this.load.spritesheet('robot', 'assets/images/png/idle.png', { frameWidth: 275, frameHeight: 473 }) 
       this.load.spritesheet('robotrun', 'assets/images/png/run.png', { frameHeight: 480,  frameWidth: 280})
       this.load.spritesheet('robotjump', 'assets/images/png/jump.png', { frameHeight: 476, frameWidth: 351})
@@ -18,6 +18,7 @@ class LevelOne extends Phaser.Scene {
       this.load.image('zombie2', 'assets/images/png-files/male-zombie/Attack (1).png')
       this.load.image('clouds', 'assets/images/clouds.png')
       this.load.image('floor', 'assets/images/grass.png')
+      // this.load.image('gameOver', 'assets/images/gameover.png')
       this.load.audio('LevelOneMusic', 'assets/audio/Patricia Taxxon - Nostalgia - 09 Home.mp3')
   }
 
@@ -29,7 +30,8 @@ class LevelOne extends Phaser.Scene {
 
       this.LevelOneMusic = this.sound.add('LevelOneMusic')
       this.LevelOneMusic.play();
-      this.backG = this.add.sprite(0, 0, 'background');    // adds background
+
+      // this.backG = this.add.sprite(50, 20, 'background').setOrigin(0, 0);    // adds background
 
       let floor = this.physics.add.staticImage(gameWidth/2, gameHeight * .95, 'floor').setScale(2).refreshBody();
 
@@ -44,7 +46,10 @@ class LevelOne extends Phaser.Scene {
       // let zombie1 = this.add.sprite(800, 395, 'zombie1'); 
       let clouds = this.add.sprite(500,95, 'clouds');  
 
-      console.log(this.input.keyboard)
+
+      // let end = this.add.sprite(400, 200, 'gameover')
+
+      // console.log(this.input.keyboard)
       // decreases the size of the sprites
 
       this.anims.create({
@@ -80,6 +85,7 @@ class LevelOne extends Phaser.Scene {
       this.zombie2.setScale(0.3)
       floor.setScale(2,1)
       clouds.setScale(.8,1.3)
+
   
       this.zombie1.flipX = true; // flips the zombie from right to left
       this.zombie2.flipX = true;
@@ -104,32 +110,40 @@ class LevelOne extends Phaser.Scene {
                   // 2nd argument X-axis sets how far from origin(0,0) of player (origin is at top left corner)
                   // 3rd argument Y-axis
    
-                  this.add.text(400, 0, 'AndroCat Adventures', {fontSize: '15px', fill: 'black'})
+   this.add.text(400, 0, 'AndroCat Adventures', {fontSize: '15px', fill: 'black'})
 
    let score = 5;
    let scoreText =  this.add.text(400, 16, 'Lives: 5', {fontSize: '32px', fill: 'black'})
+   scoreText.visible = true;
 
-   let gameOverText =  this.add.text(400, 200, 'Game Over', {fontSize: '40px', fill: 'black'})
-    // gameOverText.setOrigin(0.5)  
+   let gameOverText =  this.add.text(500, 300, 'GAME OVER', {fontSize: '60px', fill: 'red'})
+    gameOverText.setOrigin(0.5)  
     gameOverText.visible = false;
+
+    // let end = this.add.sprite(400, 200, 'gameover')
+    // gameOver.visible = false;
 
     this.physics.add.collider(this.zombie1, this.player, function(zombie, player){
         zombie.destroy();     // upon collision zombie disappears
         score -= 1
         scoreText.setText('Lives: ' + score)
+
         if (score === 3){
           gameOverText.visible = true;
-          // this.scene.pause()
+          scoreText.visible = false;
+          // player.visible = false
         }
     })
     this.physics.add.collider(this.zombie2, this.player, function(zombie, player){
       score -= 1
       scoreText.setText('Lives: ' + score)
       zombie.destroy(); // upon collision zombie disappears
+
       if (score === 3){
        gameOverText.visible = true;
-      //  this.scene.pause()
-          }
+       scoreText.visible = false;
+        // player.visible = false
+      }
     })
 
     this.player.play('idle')
