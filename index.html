@@ -6,21 +6,23 @@
     <title>AndroCat Adventures</title>
     <link rel="shortcut icon" href="assets/favicon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="presentation.html">
+    <link rel="stylesheet" href="presentation.css">
     <script src="phaserLibrary/phaser.min.js"></script>
     <script type="module" src="gameConfig.js"></script>
     <script type="module" src="index.js"></script>
-    <!-- <script type="module" src="explosions.js"></script> -->
     <script type="module" src="titleScene.js"></script>
 </head>
 <body>
-    <!--sound doesn't work for chrome-->
-    <div id="homeScreen">
-        <!-- <h1>Androcat Adventures</h1> -->
+    <div id="navBar">
+        <ul>
+            <li><a href="index.html"><img src="assets/favicon/android-chrome-512x512.png"> AndroCat Adventures</a></li>
+            <li id="about"><a href="presentation.html">Meet the team</a></li>
+        </ul>
     </div>
-    
+    <div id="homeScreen">
+    </div>
     <div id= "gameScreen"> </div>
-    <!-- <div id="button">
-    <button class="play" onclick=playGame()>START GAME</button>
-    </div> -->
+    <script src="presentation.js"></script>
 </body>
 </html>
